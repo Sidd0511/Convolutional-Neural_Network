@@ -51,13 +51,13 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 training_set = train_datagen.flow_from_directory(
-    '/Users/Siddharth/PycharmProjects/Deep_Learning/CNN/dataset/training_set',
+    'dataset/training_set',
     target_size=(128, 128),
     batch_size=32,
     class_mode='binary')
 
 test_set = test_datagen.flow_from_directory(
-    '/Users/Siddharth/PycharmProjects/Deep_Learning/CNN/dataset/test_set',
+    'dataset/test_set',
     target_size=(128, 128),
     batch_size=32,
     class_mode='binary')
@@ -91,6 +91,5 @@ def new_prediction(image_path):
     else:
         return 'cat'
 
-for image in glob.glob('/Users/Siddharth/PycharmProjects/'
-                       'Deep_Learning/CNN/dataset/single_prediction/*.jpg'):
+for image in glob.glob('dataset/single_prediction/*.jpg'):
     print("The prediction is: ",new_prediction(image))
