@@ -7,34 +7,45 @@ from keras.layers import Dense, Dropout
 import h5py
 import glob, os
 
+
+###### THIS CNN is INITIALLY FOR RECOGNITION OF DOGS AND CATS #########
+
 start_time = dt.now()
 print(start_time)
 
 classifier = Sequential()
 
-classifier.add(Convolution2D(64, (3, 3), input_shape=(128, 128, 3), activation='relu'))
+classifier.add(Convolution2D(64, (5, 5), input_shape=(128, 128, 3), activation='relu'))
+classifier.add(Convolution2D(64, (3, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
-classifier.add(Dense(units=32, activation='relu'))
-classifier.add(Dropout(rate=0.2))
+#classifier.add(Dense(units=32, activation='relu'))
+#classifier.add(Dropout(rate=0.1))
+
+classifier.add(Convolution2D(64, (5, 5), activation='relu'))
+classifier.add(Convolution2D(64, (3, 3), activation='relu'))
+classifier.add(MaxPooling2D(pool_size=(2, 2)))
+
 
 classifier.add(Convolution2D(64, (3, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
-classifier.add(Dense(units=32, activation='relu'))
-classifier.add(Dropout(rate=0.2))
 
-classifier.add(Convolution2D(64, (3, 3), activation='relu'))
-classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 classifier.add(Flatten())
+
+classifier.add(Dense(units=256, activation='relu'))
+classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=128, activation='relu'))
 classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=64, activation='relu'))
 classifier.add(Dropout(rate=0.2))
-#
-# classifier.add(Dense(units=64, activation='relu'))
-# classifier.add(Dropout(rate=0.2))
+
+classifier.add(Dense(units=64, activation='relu'))
+classifier.add(Dropout(rate=0.1))
+
+classifier.add(Dense(units=32, activation ='relu'))
+classifier.add(Dropout(rate=0.1))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
