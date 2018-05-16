@@ -19,7 +19,7 @@ classifier.add(Convolution2D(64, (5, 5), input_shape=(128, 128, 3), activation='
 classifier.add(Convolution2D(64, (3, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(4, 4)))
 #classifier.add(Dense(units=32, activation='relu'))
-classifier.add(Dropout(rate=0.1))
+#classifier.add(Dropout(rate=0.1))
 
 classifier.add(Convolution2D(64, (5, 5), activation='relu'))
 classifier.add(Convolution2D(64, (3, 3), activation='relu'))
