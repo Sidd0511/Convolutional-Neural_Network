@@ -6,6 +6,9 @@ from keras.layers import Flatten
 from keras.layers import Dense, Dropout
 import h5py
 import glob, os
+from matplotlib import pyplot as plt
+import numpy as np
+import pandas as pd
 
 
 ###### THIS CNN is INITIALLY FOR RECOGNITION OF DOGS AND CATS #########
@@ -73,17 +76,29 @@ test_set = test_datagen.flow_from_directory(
     batch_size=32,
     class_mode='binary')
 
-classifier.fit_generator(
+r = classifier.fit_generator(
     training_set,
     steps_per_epoch=(8000 / 32),
     epochs=100,
     validation_data=test_set,
     validation_steps=(2000 / 32))
+print("Returned: ",r)
+print(r.history.keys())
+
+
+plt.plot(r.history['loss'], label='loss')
+plt.plot(r.history['val_loss'], label='val_loss')
+plt.legend()
+plt.show()
+
+plt.plot(r.history['acc'], label='acc')
+plt.plot(r.history['val_acc'], label='val_acc')
+plt.legend()
+plt.show()
 
 end_time = dt.now()
 difference = end_time - start_time
 print("\nTime taken:", difference)
-
 
 
 ###### To make new predictions ######
