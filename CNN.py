@@ -1,15 +1,12 @@
+import glob
 from datetime import datetime as dt
-from keras.models import Sequential
-from keras.layers import Convolution2D
-from keras.layers import MaxPooling2D
-from keras.layers import Flatten
-from keras.layers import Dense, Dropout
-import h5py
-import glob, os
-from matplotlib import pyplot as plt
-import numpy as np
-import pandas as pd
 
+from keras.layers import Convolution2D
+from keras.layers import Dense, Dropout
+from keras.layers import Flatten
+from keras.layers import MaxPooling2D
+from keras.models import Sequential
+from matplotlib import pyplot as plt
 
 ###### THIS CNN is INITIALLY FOR RECOGNITION OF DOGS AND CATS #########
 
@@ -42,10 +39,10 @@ classifier.add(Dense(units=128, activation='relu'))
 classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=64, activation='relu'))
-classifier.add(Dropout(rate=0.2))
+#classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=64, activation='relu'))
-classifier.add(Dropout(rate=0.1))
+#classifier.add(Dropout(rate=0.1))
 
 classifier.add(Dense(units=32, activation ='relu'))
 classifier.add(Dropout(rate=0.1))
