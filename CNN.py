@@ -43,7 +43,7 @@ classifier.add(Dense(units=64, activation='relu'))
 classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=32, activation='relu'))
-classifier.add(Dropout(rate=0.1))
+#classifier.add(Dropout(rate=0.1))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
