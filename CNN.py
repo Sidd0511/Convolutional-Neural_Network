@@ -30,19 +30,19 @@ classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 classifier.add(Flatten())
 
-classifier.add(Dense(units=128, activation='relu'))
-classifier.add(Dropout(rate=0.2))
-
-classifier.add(Dense(units=128, activation='relu'))
-classifier.add(Dropout(rate=0.2))
-
-classifier.add(Dense(units=64, activation='relu'))
-classifier.add(Dropout(rate=0.1))
-
 classifier.add(Dense(units=64, activation='relu'))
 classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=32, activation='relu'))
+classifier.add(Dropout(rate=0.2))
+
+classifier.add(Dense(units=8, activation='relu'))
+classifier.add(Dropout(rate=0.1))
+
+classifier.add(Dense(units=4, activation='relu'))
+classifier.add(Dropout(rate=0.2))
+
+classifier.add(Dense(units=2, activation='relu'))
 #classifier.add(Dropout(rate=0.1))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
