@@ -49,6 +49,7 @@ classifier.add(Dense(units=1, activation='sigmoid'))
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 classifier.save('CNN_Model.h5')
 
+classifier.summary()
 from keras.preprocessing.image import ImageDataGenerator
 
 train_datagen = ImageDataGenerator(
