@@ -7,7 +7,7 @@ from keras.layers import Flatten
 from keras.layers import MaxPooling2D
 from keras.models import Sequential
 from matplotlib import pyplot as plt
-
+from keras.regularizers import l2
 ###### THIS CNN is INITIALLY FOR RECOGNITION OF DOGS AND CATS #########
 
 start_time = dt.now()
@@ -28,10 +28,10 @@ classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 classifier.add(Flatten())
 
-classifier.add(Dense(units=256, activation='relu'))
+classifier.add(Dense(units=256, kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01), activation='relu'))
 classifier.add(Dropout(0.2))
 
-classifier.add(Dense(units=128, activation='relu'))
+classifier.add(Dense(units=128, kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01), activation='relu'))
 classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=64, activation='relu'))
