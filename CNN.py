@@ -73,7 +73,7 @@ test_set = test_datagen.flow_from_directory(
 r = classifier.fit_generator(
     training_set,
     steps_per_epoch=(8000 / 8),
-    epochs=5,
+    epochs=100,
     validation_data=test_set,
     validation_steps=(2000 / 8))
 print("Returned: ", r)
