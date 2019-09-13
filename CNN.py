@@ -15,7 +15,7 @@ print(start_time)
 
 classifier = Sequential()
 
-classifier.add(Conv2D(32, (5, 5), input_shape=(64, 64, 3), activation='relu'))
+classifier.add(Conv2D(32, (5, 5), input_shape=(128, 128, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 
@@ -59,13 +59,13 @@ test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 training_set = train_datagen.flow_from_directory(
     'dataset/training_set',
-    target_size=(64, 64),
+    target_size=(128, 128),
     batch_size=8,
     class_mode='binary')
 
 test_set = test_datagen.flow_from_directory(
     'dataset/test_set',
-    target_size=(64, 64),
+    target_size=(128, 128),
     batch_size=8,
     class_mode='binary')
 
@@ -99,7 +99,7 @@ from keras.preprocessing import image
 
 
 def new_prediction(image_path):
-    test_image = image.load_img(image_path, target_size=(64, 64))
+    test_image = image.load_img(image_path, target_size=(128, 128))
     test_image = image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
