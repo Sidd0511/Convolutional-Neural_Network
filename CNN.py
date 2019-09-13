@@ -52,7 +52,9 @@ classifier.save('CNN_Model.h5')
 classifier.summary()
 
 rlr = ReduceLROnPlateau(monitor='loss', factor=0.5, patience=5, verbose=1)
-check_point = ModelCheckpoint(filepath='weights.hdf5', monitor='loss', verbose=1, save_best_only=True,
+check_point_loss = ModelCheckpoint(filepath='val_loss.hdf5', monitor='val_loss', verbose=1, save_best_only=True,
+                              save_weights_only=True)
+check_point_acc = ModelCheckpoint(filepath='val_acc.hdf5', monitor='val_acc', verbose=1, save_best_only=True,
                               save_weights_only=True)
 tb = TensorBoard()
 
@@ -86,7 +88,7 @@ r = classifier.fit_generator(
     epochs=300,
     validation_data=test_set,
     validation_steps=(2000 / 32),
-    callbacks=[check_point, tb])
+    callbacks=[check_point_loss,check_point_acc, tb])
 print("Returned: ", r)
 print(r.history.keys())
 
