@@ -9,7 +9,7 @@ from keras.models import Sequential
 from matplotlib import pyplot as plt
 from keras.regularizers import l2
 from keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau, TensorBoard
-
+from keras.utils import plot_model
 
 ###### THIS CNN is INITIALLY FOR RECOGNITION OF DOGS AND CATS #########
 
