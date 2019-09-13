@@ -28,8 +28,8 @@ classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 classifier.add(Flatten())
 
-classifier.add(Dense(units=256, bias_regularizer=l2(0.01), activation='relu'))
-#classifier.add(Dropout(0.2))
+classifier.add(Dense(units=256, activation='relu'))
+classifier.add(Dropout(0.2))
 
 classifier.add(Dense(units=128, bias_regularizer=l2(0.01), activation='relu'))
 #classifier.add(Dropout(rate=0.2))
@@ -41,7 +41,7 @@ classifier.add(Dense(units=32, bias_regularizer=l2(0.01), activation='relu'))
 classifier.add(Dropout(rate=0.1))
 
 classifier.add(Dense(units=16, activation='relu'))
-#classifier.add(Dropout(rate=0.1))
+classifier.add(Dropout(rate=0.1))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -72,10 +72,10 @@ test_set = test_datagen.flow_from_directory(
 
 r = classifier.fit_generator(
     training_set,
-    steps_per_epoch=(8000 / 8),
+    steps_per_epoch=(8000 / 32),
     epochs=100,
     validation_data=test_set,
-    validation_steps=(2000 / 8))
+    validation_steps=(2000 / 32))
 print("Returned: ", r)
 print(r.history.keys())
 
