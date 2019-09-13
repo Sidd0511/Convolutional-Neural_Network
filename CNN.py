@@ -8,6 +8,9 @@ from keras.layers import MaxPooling2D
 from keras.models import Sequential
 from matplotlib import pyplot as plt
 from keras.regularizers import l2
+from keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau, TensorBoard
+
+
 ###### THIS CNN is INITIALLY FOR RECOGNITION OF DOGS AND CATS #########
 
 start_time = dt.now()
@@ -43,10 +46,18 @@ classifier.add(Dropout(rate=0.1))
 classifier.add(Dense(units=16, activation='relu'))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
+plot_model(classifier, to_file='model.png')
 classifier.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
 classifier.save('CNN_Model.h5')
-
 classifier.summary()
+
+rlr = ReduceLROnPlateau(monitor='loss', factor=0.5, patience=5, verbose=1)
+check_point = ModelCheckpoint(filepath='weights.hdf5', monitor='loss', verbose=1, save_best_only=True,
+                              save_weights_only=True)
+tb = TensorBoard()
+
+
+
 from keras.preprocessing.image import ImageDataGenerator
 
 train_datagen = ImageDataGenerator(
@@ -74,7 +85,8 @@ r = classifier.fit_generator(
     steps_per_epoch=(8000 / 32),
     epochs=300,
     validation_data=test_set,
-    validation_steps=(2000 / 32))
+    validation_steps=(2000 / 32),
+    callbacks=[check_point, tb])
 print("Returned: ", r)
 print(r.history.keys())
 
