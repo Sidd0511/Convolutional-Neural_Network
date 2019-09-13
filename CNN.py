@@ -9,7 +9,7 @@ from keras.models import Sequential
 from matplotlib import pyplot as plt
 from keras.regularizers import l2
 from keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau, TensorBoard
-from keras.utils import plot_model
+
 
 ###### THIS CNN is INITIALLY FOR RECOGNITION OF DOGS AND CATS #########
 
@@ -46,7 +46,7 @@ classifier.add(Dropout(rate=0.1))
 classifier.add(Dense(units=16, activation='relu'))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
-plot_model(classifier, to_file='model.png')
+#plot_model(classifier, to_file='model.png')
 classifier.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
 classifier.save('CNN_Model.h5')
 classifier.summary()
