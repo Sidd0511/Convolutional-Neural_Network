@@ -18,7 +18,7 @@ print(start_time)
 
 classifier = Sequential()
 
-classifier.add(Conv2D(32, (5, 5), input_shape=(128, 128, 3), activation='relu'))
+classifier.add(Conv2D(64, (5, 5), input_shape=(128, 128, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 
