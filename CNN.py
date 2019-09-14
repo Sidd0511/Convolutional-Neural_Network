@@ -31,6 +31,9 @@ classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 classifier.add(Flatten())
 
+classifier.add(Dense(units=512, activation='relu'))
+classifier.add(Dropout(0.25))
+
 classifier.add(Dense(units=256, activation='relu'))
 classifier.add(Dropout(0.2))
 
@@ -44,6 +47,7 @@ classifier.add(Dense(units=32, activation='relu'))
 classifier.add(Dropout(rate=0.1))
 
 classifier.add(Dense(units=16, activation='relu'))
+classifier.add(Dense(units=4, activation='relu'))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
 #plot_model(classifier, to_file='model.png')
@@ -73,21 +77,21 @@ test_datagen = ImageDataGenerator(rescale=1. / 255)
 training_set = train_datagen.flow_from_directory(
     'dataset/training_set',
     target_size=(128, 128),
-    batch_size=8,
+    batch_size=128,
     class_mode='binary')
 
 test_set = test_datagen.flow_from_directory(
     'dataset/test_set',
     target_size=(128, 128),
-    batch_size=8,
+    batch_size=128,
     class_mode='binary')
 
 r = classifier.fit_generator(
     training_set,
-    steps_per_epoch=(8000 / 32),
-    epochs=300,
+    steps_per_epoch=(18730 / 128),
+    epochs=150,
     validation_data=test_set,
-    validation_steps=(2000 / 32),
+    validation_steps=(6900 / 128),
     callbacks=[check_point_loss,check_point_acc,rlr, tb])
 print("Returned: ", r)
 print(r.history.keys())
