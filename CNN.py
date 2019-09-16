@@ -20,33 +20,36 @@ classifier = Sequential()
 
 classifier.add(Conv2D(64, (5, 5), input_shape=(128, 128, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
+# Add dropouts after conv layers
 
 
-classifier.add(Conv2D(32, (3, 3), activation='relu'))
+classifier.add(Conv2D(64, (3, 3), activation='relu'))
 #classifier.add(Convolution2D(64, (3, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
-classifier.add(Conv2D(32, (3, 3), activation='relu'))
+classifier.add(Conv2D(64, (3, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
+# Add dropouts after conv layers
 
 classifier.add(Flatten())
 
 classifier.add(Dense(units=512, activation='relu'))
-classifier.add(Dropout(0.25))
+classifier.add(Dropout(0.30))
 
 classifier.add(Dense(units=256, activation='relu'))
-classifier.add(Dropout(0.2))
+classifier.add(Dropout(0.30))
 
 classifier.add(Dense(units=128, activation='relu'))
 classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=64, activation='relu'))
-classifier.add(Dropout(rate=0.1))
+classifier.add(Dropout(rate=0.2))
 
 classifier.add(Dense(units=32, activation='relu'))
-classifier.add(Dropout(rate=0.1))
+classifier.add(Dropout(rate=0.15))
 
 classifier.add(Dense(units=16, activation='relu'))
+classifier.add(Dropout(rate=0.1))
 classifier.add(Dense(units=4, activation='relu'))
 
 classifier.add(Dense(units=1, activation='sigmoid'))
