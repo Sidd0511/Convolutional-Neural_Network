@@ -33,8 +33,8 @@ classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 classifier.add(Flatten())
 
-classifier.add(Dense(units=512, activation='relu'))
-classifier.add(Dropout(0.30))
+#classifier.add(Dense(units=512, activation='relu'))
+#classifier.add(Dropout(0.30))
 
 classifier.add(Dense(units=256, activation='relu'))
 classifier.add(Dropout(0.30))
