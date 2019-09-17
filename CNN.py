@@ -20,7 +20,7 @@ classifier = Sequential()
 
 classifier.add(Conv2D(64, (5, 5), input_shape=(128, 128, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
-# Add dropouts after conv layers
+
 
 
 classifier.add(Conv2D(64, (3, 3), activation='relu'))
@@ -30,6 +30,7 @@ classifier.add(MaxPooling2D(pool_size=(2, 2)))
 classifier.add(Conv2D(64, (3, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
 # Add dropouts after conv layers
+classifier.add(Dropout(0.20))
 
 classifier.add(Flatten())
 
