@@ -30,10 +30,9 @@ classifier.add(MaxPooling2D(pool_size=(2, 2)))
 classifier.add(Conv2D(64, (3, 3), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
 # Add dropouts after conv layers
-classifier.add(Dropout(rate=0.20))
 
 classifier.add(Flatten())
-
+classifier.add(Dropout(rate=0.20))
 #classifier.add(Dense(units=512, activation='relu'))
 #classifier.add(Dropout(0.30))
 
